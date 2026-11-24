@@ -133,3 +133,17 @@ input[type="submit"]:hover {
         margin: 24px 120px;
     }
 }
+
+.favorite {
+    cursor: pointer;
+    color: var(--color-dark);
+    font-size: 1.3em;
+}
+
+.products ul {
+    padding-left: 0;
+}
+
+.products li {
+    list-style-type: none;
+}
