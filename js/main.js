@@ -14,18 +14,34 @@ const onFavoriteClick = e => {
     // Update tooltip
     e.target.title = isFavorite ? "Add to favorites" : "Remove from favorites";
 
+    const favorites = localStorage.getItem("favorites")
+        ? JSON.parse(localStorage.getItem("favorites"))
+        : [];
+
     // Add to localStorage
     if (!isFavorite) {
-        localStorage.setItem(`favorite-${e.target.dataset.product}`, "true");
+        localStorage.setItem(
+            "favorites",
+            JSON.stringify([...favorites, e.target.dataset.product])
+        );
     } else {
-        localStorage.removeItem(`favorite-${e.target.dataset.product}`);
+        localStorage.setItem(
+            "favorites",
+            JSON.stringify(
+                favorites.filter(x => x !== e.target.dataset.product)
+            )
+        );
     }
 };
 
 const loadFavorites = () => {
+    const favorites = localStorage.getItem("favorites")
+        ? JSON.parse(localStorage.getItem("favorites"))
+        : [];
+
     const favoriteEls = document.querySelectorAll(".favorite");
     favoriteEls.forEach(el => {
-        if (localStorage.getItem(`favorite-${el.dataset.product}`)) {
+        if (favorites.includes(el.dataset.product)) {
             el.textContent = "★";
         }
     });
