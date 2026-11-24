@@ -43,6 +43,7 @@ const loadFavorites = () => {
     favoriteEls.forEach(el => {
         if (favorites.includes(el.dataset.product)) {
             el.textContent = "★";
+            el.title = "Remove from favorites";
         }
     });
 };
