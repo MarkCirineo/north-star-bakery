@@ -1,12 +1,16 @@
 const registerEvents = () => {
     const favoriteEls = document.querySelectorAll(".favorite");
 
-    favoriteEls.forEach(el => {
-        el.addEventListener("click", onFavoriteClick);
-    });
+    if (favoriteEls.length) {
+        favoriteEls.forEach(el => {
+            el.addEventListener("click", onFavoriteClick);
+        });
+    }
 
     const formSubmitEl = document.querySelector(".contact-form");
-    formSubmitEl.addEventListener("submit", onFormSubmit);
+    if (formSubmitEl) {
+        formSubmitEl.addEventListener("submit", onFormSubmit);
+    }
 };
 
 const onFavoriteClick = e => {
