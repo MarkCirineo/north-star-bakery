@@ -4,6 +4,9 @@ const registerEvents = () => {
     favoriteEls.forEach(el => {
         el.addEventListener("click", onFavoriteClick);
     });
+
+    const formSubmitEl = document.querySelector(".contact-form");
+    formSubmitEl.addEventListener("submit", onFormSubmit);
 };
 
 const onFavoriteClick = e => {
@@ -46,6 +49,56 @@ const loadFavorites = () => {
             el.title = "Remove from favorites";
         }
     });
+};
+
+const onFormSubmit = e => {
+    e.preventDefault();
+
+    clearErrors();
+
+    const name = e.target.querySelector("input[name=name]").value.trim();
+    const email = e.target.querySelector("input[name=email]").value.trim();
+    const message = e.target
+        .querySelector("textarea[name=inquiry]")
+        .value.trim();
+
+    if (!name) {
+        showError("name-error", "Name is required.");
+        return;
+    }
+    if (!email) {
+        showError("email-error", "Email is required.");
+        return;
+    }
+    if (!message) {
+        showError("inquiry-error", "Message is required.");
+        return;
+    }
+
+    if (name.length < 2) {
+        showError("name-error", "Name must be at least 2 characters.");
+        return;
+    }
+    if (email.length < 5) {
+        showError("email-error", "Email must be at least 5 characters.");
+        return;
+    }
+    if (message.length < 10) {
+        showError("inquiry-error", "Message must be at least 10 characters.");
+        return;
+    }
+};
+
+const clearErrors = () => {
+    const errorEls = document.querySelectorAll(".error-message");
+    errorEls.forEach(el => {
+        el.textContent = "";
+    });
+};
+
+const showError = (id, message) => {
+    const errorEl = document.getElementById(id);
+    errorEl.textContent = message;
 };
 
 const init = () => {

@@ -42,14 +42,17 @@
                     <fieldset>
                         <legend>Contact Information</legend>
                         <label>Enter your name:</label>
-                        <input type="text" name="name" required />
+                        <input type="text" name="name" />
+                        <span class="error-message" id="name-error"></span>
                         <label>Enter your email:</label>
-                        <input type="email" name="email" required />
+                        <input type="email" name="email" />
+                        <span class="error-message" id="email-error"></span>
                     </fieldset>
                     <fieldset>
                         <legend>Inquiry or pre order request</legend>
                         <label>Enter your message:</label>
                         <textarea name="inquiry"></textarea>
+                        <span class="error-message" id="inquiry-error"></span>
                     </fieldset>
                     <fieldset>
                         <legend>Send us the message!</legend>
